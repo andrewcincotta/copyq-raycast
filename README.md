@@ -1,8 +1,3 @@
-# copyq-raycast
+# CopyQ
 
-Use [Raycast](https://www.raycast.com) to search [CopyQ](https://github.com/hluk/CopyQ)'s clipboard history and set the clipboard to the selected snippet.
-
-Requires:
-
-- CopyQ
-- Raycast
+Lists CopyQ clipboard entries and allows user to select/paste them.
