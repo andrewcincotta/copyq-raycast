@@ -2,11 +2,17 @@ import { ActionPanel, Detail, List, Action, getPreferenceValues, Icon, Clipboard
 import { exec } from "child_process";
 import { useEffect, useState } from "react";
 
+interface Preferences {
+  copyq_path: string;
+  default_tab: string;
+  default_num_items: number;
+}
+
 export default function Command() {
   const preferences = getPreferenceValues<Preferences>();
+  const copyqPath = preferences.copyq_path;
   const defaultTab = preferences.default_tab;
   const defaultNumItems = preferences.default_num_items;
-  const copyqPath = preferences.copyq_path;
 
   const [clipboardContents, setClipboardContents] = useState<string[]>([]);
 

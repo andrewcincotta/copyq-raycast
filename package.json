@@ -12,7 +12,7 @@
   "commands": [
     {
       "name": "index",
-      "title": "CopyQ",
+      "title": "Clipboard Manager",
       "description": "Lists CopyQ clipboard entries and allows user to select/paste them.",
       "mode": "view",
       "preferences": [
