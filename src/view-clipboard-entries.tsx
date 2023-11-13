@@ -6,21 +6,44 @@ import {
   getPreferenceValues,
   Icon,
   Clipboard,
+  openExtensionPreferences,
 } from "@raycast/api";
-import { exec } from "child_process";
 import { useEffect, useState } from "react";
+import { exec } from "child_process";
+import { accessSync, constants } from "fs";
 
-interface Preferences {
+interface ExtensionPreferences {
   copyq_path: string;
   default_tab: string;
   default_num_items: number;
 }
 
 export default function Command() {
-  const preferences = getPreferenceValues<Preferences>();
+  const preferences = getPreferenceValues<ExtensionPreferences>();
   const copyqPath = preferences.copyq_path;
   const defaultTab = preferences.default_tab;
   const defaultNumItems = preferences.default_num_items;
+
+  // Check if CopyQ is installed
+  try {
+    accessSync(copyqPath, constants.X_OK);
+  } catch (err) {
+    // Return error message
+    return (
+      <List>
+        <List.Item
+          title="CopyQ not found"
+          subtitle="Please check your CopyQ path in preferences."
+          actions={
+            <ActionPanel>
+              <Action title="Open Command Preferences" icon={Icon.Cog} onAction={openExtensionPreferences} />
+              <Action.Paste title="Copy Path to Clipboard" content={copyqPath} />
+            </ActionPanel>
+          }
+        />
+      </List>
+    );
+  }
 
   const [clipboardContents, setClipboardContents] = useState<string[]>([]);
 
@@ -32,6 +55,7 @@ export default function Command() {
       const promise = new Promise<string>((resolve, reject) => {
         exec(command, (error, stdout) => {
           if (error) {
+            //Typically occurs when CopyQ path is incorrect or not installed.
             console.log(`error: ${error.message}`);
             reject(error);
           } else {
@@ -70,11 +94,7 @@ export default function Command() {
               Clipboard.paste({ text });
             }}
           />
-          <Action.Push
-            title="Preview"
-            icon={Icon.ArrowsExpand}
-            target={<Detail markdown={text} />}
-          />
+          <Action.Push title="Preview" icon={Icon.ArrowsExpand} target={<Detail markdown={text} />} />
         </ActionPanel>
       }
     />

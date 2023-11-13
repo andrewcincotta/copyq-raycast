@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "copyq",
-  "title": "CopyQ",
+  "name": "copyq-clipboard-manager",
+  "title": "CopyQ Clipboard Manager",
   "description": "Lists CopyQ clipboard entries and allows user to paste them.",
   "icon": "command-icon.png",
   "author": "andrewcincotta",
@@ -11,8 +11,8 @@
   "license": "MIT",
   "commands": [
     {
-      "name": "index",
-      "title": "Clipboard Manager",
+      "name": "view-clipboard-entries",
+      "title": "View Clipboard Entries",
       "description": "Lists CopyQ clipboard entries and allows user to select/paste them.",
       "mode": "view",
       "preferences": [

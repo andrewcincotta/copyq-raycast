@@ -13,8 +13,8 @@ type ExtensionPreferences = {}
 declare type Preferences = ExtensionPreferences
 
 declare namespace Preferences {
-  /** Preferences accessible in the `index` command */
-  export type Index = ExtensionPreferences & {
+  /** Preferences accessible in the `view-clipboard-entries` command */
+  export type ViewClipboardEntries = ExtensionPreferences & {
   /** CopyQ Path - Path to CopyQ executable */
   "copyq_path": string,
   /** Default Tab - Name of Default CopyQ Tab */
@@ -25,8 +25,8 @@ declare namespace Preferences {
 }
 
 declare namespace Arguments {
-  /** Arguments passed to the `index` command */
-  export type Index = {}
+  /** Arguments passed to the `view-clipboard-entries` command */
+  export type ViewClipboardEntries = {}
 }
 
 
