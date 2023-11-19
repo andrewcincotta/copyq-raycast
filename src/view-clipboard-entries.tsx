@@ -9,13 +9,19 @@ import {
   Clipboard,
   Detail,
 } from "@raycast/api";
-import { exec, execSync } from "child_process";
+import { execSync, ExecSyncOptionsWithStringEncoding } from "child_process";
 import { accessSync, constants } from "fs";
 
 interface ExtensionPreferences {
   copyq_path: string;
   default_tab: string;
   max_items: number;
+}
+
+interface ClipboardItem {
+  row: number;
+  mimetypes: string[];
+  text: string;
 }
 
 export default function Command() {
@@ -63,7 +69,7 @@ export default function Command() {
     let amntItems = String(maxItems); // Displays maxItems items in the tab
     if (maxItems > numItems(tab)) {
       amntItems = String(numItems(tab)); // Does not display more items than there are in the tab
-    } else if (maxItems == 0) {
+    } else if (maxItems === 0) {
       amntItems = "size()"; // Displays all items in the tab
     }
 
@@ -83,9 +89,9 @@ export default function Command() {
     `;
 
     const command: string = "copyq eval -";
-    const options = {
+    const options: ExecSyncOptionsWithStringEncoding = {
       input: script,
-      encoding: "utf-8",
+      encoding: "utf8",
     };
 
     const stdout = execSync(command, options);
@@ -93,7 +99,7 @@ export default function Command() {
     const jsonArr = JSON.parse(jsonString![0]); // Parse the JSON array
 
     // Return an array of [row, text]
-    const outputArray = jsonArr.map((item) => [item.row, item.text]);
+    const outputArray: Array<[number, string]> = jsonArr.map((item: ClipboardItem) => [item.row, item.text]);
 
     return outputArray;
   }
@@ -101,7 +107,7 @@ export default function Command() {
   // Define a function to select clipboard contents by row
   function selectClipboardContents(tab: string, index: number) {
     const command = `${copyqPath} tab ${tab} select ${index}`;
-    exec(command);
+    execSync(command);
   }
 
   // Get clipboard contents
@@ -123,6 +129,7 @@ export default function Command() {
                   Clipboard.paste({ text });
                 }}
               />
+
               <Action.Push title="Preview" icon={Icon.ArrowsExpand} target={<Detail markdown={text} />} />
             </ActionPanel>
           }

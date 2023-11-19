@@ -5,14 +5,12 @@
   "description": "Lists CopyQ clipboard entries and allows user to paste them.",
   "icon": "command-icon.png",
   "author": "andrewcincotta",
-  "categories": [
-    "Productivity"
-  ],
+  "categories": ["Productivity"],
   "license": "MIT",
   "commands": [
     {
       "name": "view-clipboard-entries",
-      "title": "View Clipboard Entries",
+      "title": "View Default CopyQ Tab",
       "description": "Lists CopyQ clipboard entries and allows user to select/paste them.",
       "mode": "view",
       "preferences": [
@@ -28,20 +26,18 @@
           "name": "max_items",
           "title": "Max Tabs",
           "description": "Max number of CopyQ tabs to display. Set to 0 for no limit. Setting the limit too high will result in a long load time.",
+          "required": true,
           "default": "0"
         }
       ]
     },
-
     {
       "name": "select-tab",
-      "title": "Select CopyQ Tab",
+      "title": "CopyQ",
       "description": "Lists CopyQ tabs and allows the user to select one.",
       "mode": "view"
     }
-
   ],
-
   "preferences": [
     {
       "type": "textfield",
@@ -52,7 +48,6 @@
       "required": true
     }
   ],
-
   "dependencies": {
     "@raycast/api": "^1.60.1"
   },
