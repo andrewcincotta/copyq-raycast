@@ -7,7 +7,7 @@ import {
   ActionPanel,
   Action,
   Clipboard,
-  Detail
+  Detail,
 } from "@raycast/api";
 import { execSync } from "child_process";
 
@@ -30,7 +30,9 @@ export default function Command() {
   } catch (err) {
     return (
       <Detail
-        markdown={"CopyQ not found, or CopyQ server not running\n\nPlease check your CopyQ path in preferences, and make sure CopyQ server is running."}
+        markdown={
+          "CopyQ not found, or CopyQ server not running\n\nPlease check your CopyQ path in preferences, and make sure CopyQ server is running."
+        }
         actions={
           <ActionPanel>
             <Action title="Open Command Preferences" icon={Icon.Cog} onAction={openExtensionPreferences} />
@@ -38,7 +40,7 @@ export default function Command() {
           </ActionPanel>
         }
       />
-    )
+    );
   }
 
   // Define a function to get clipboard contents and return an array of text
