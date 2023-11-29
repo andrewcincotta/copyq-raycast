@@ -46,7 +46,7 @@ export default function Command() {
   // Define a function to get clipboard contents and return an array of text
   function getClipboardContents(tab: string) {
     // Gets clipboard contents seperated by null character
-    const command = `${copyqPath} tab ${tab} 'separator(String.fromCharCode(0)); read.apply(this, [...Array(size()).keys()])'`
+    const command = `${copyqPath} tab ${tab} 'separator(String.fromCharCode(0)); read.apply(this, [...Array(size()).keys()])'`;
     const stdout = execSync(command, { encoding: "utf8" });
     // Return the array split by null characters
     return stdout.split("\0");
@@ -60,7 +60,7 @@ export default function Command() {
 
   // Get clipboard contents
   const clipboardContents = getClipboardContents(selectedTab);
-  console.log(clipboardContents.length)
+  console.log(clipboardContents.length);
 
   return (
     <List isShowingDetail>
