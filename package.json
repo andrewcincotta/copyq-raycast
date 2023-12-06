@@ -20,6 +20,14 @@
           "title": "Default Tab",
           "description": "Name of Default CopyQ Tab",
           "required": true
+        },
+        {
+          "type": "textfield",
+          "name": "max_entries",
+          "title": "Max Number of Entries",
+          "description": "Maximum Number of Entries to Display. If Set to 0, All Entries Will Be Displayed.",
+          "default": "0",
+          "required": true
         }
       ]
     },
