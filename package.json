@@ -16,25 +16,9 @@
       "preferences": [
         {
           "type": "textfield",
-          "name": "copyq_path",
-          "title": "CopyQ Path",
-          "description": "Path to CopyQ executable",
-          "default": "/usr/local/bin/copyq",
-          "required": true
-        },
-        {
-          "type": "textfield",
           "name": "default_tab",
           "title": "Default Tab",
           "description": "Name of Default CopyQ Tab",
-          "required": true
-        },
-        {
-          "type": "textfield",
-          "name": "max_entries",
-          "title": "Max Number of Entries",
-          "description": "Maximum Number of Entries to Display. If Set to 0, All Entries Will Be Displayed.",
-          "default": "0",
           "required": true
         }
       ]
